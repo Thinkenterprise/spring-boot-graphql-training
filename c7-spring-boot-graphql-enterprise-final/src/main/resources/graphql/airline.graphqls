@@ -25,11 +25,9 @@ type Mutation {
 	updateRouteWithProjection(id: ID!, input: RouteInput): Route
 }
 
-
 type Subscription {
     registerRouteCreated: Route 
 }
-
 
 # Route documentation First Line 
 # Route documentation Second Line
@@ -93,5 +91,3 @@ type Tracking {
 	id: ID!
 	tracking: String! 
 }
-
-

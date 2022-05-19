@@ -55,9 +55,9 @@ public class Application implements ApplicationRunner {
     Route route2 = new Route(2L, "LH1602", "MUC", "IBZ", false);
     Route route3 = new Route(3L, "LH4017", "FRA", "NYC", true);
 
-    route1.setParent(route1);
-    route2.setParent(route2);
-    route3.setParent(route3);
+    route1.setRoute(route1);
+    route2.setRoute(route2);
+    route3.setRoute(route3);
 
     Flight flight1 = new Flight(1L, route1, 120.45, LocalDate.parse("2018-06-17"));
     Flight flight2 = new Flight(2L, route2, 111.45, LocalDate.parse("2018-07-17"));

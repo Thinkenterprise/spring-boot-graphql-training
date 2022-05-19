@@ -1,0 +1,56 @@
+query routes {
+  routes {
+    id
+  }
+}
+
+{
+  route(flightNumber: "LH7902") {
+    id
+    flightNumber
+  }
+}
+
+
+query routes1 {
+  routes {
+    id
+    flightNumber
+  }
+}
+
+query routes2 {
+  routes {
+    id
+    route {
+      id
+    }
+  }
+}
+
+query routes3 {
+  routes {
+    id
+    route {
+      id
+    }
+    flights {
+      id
+      price
+    }
+  }
+}
+
+
+fragment routeDetails on Route {
+  id
+  flightNumber
+}
+
+query queryWithFragment{
+  route(flightNumber: "LH7902") {
+   ...routeDetails
+   isDisabled
+  }
+}
+

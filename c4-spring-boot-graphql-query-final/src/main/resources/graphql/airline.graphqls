@@ -1,0 +1,28 @@
+schema {
+	query: Query
+	mutation: Mutation
+}
+
+type Query { 
+	routes: [Route]
+}
+
+type Mutation {
+	createRoute(flightNumber: String!): Route
+}
+
+type Route {
+	id: ID!
+	flightNumber: String!
+	departure: String @deprecated(reason: "Use `newField`.")
+	destination: String
+	isDisabled: Boolean
+	flights: [Flight!]
+}
+
+type Flight {
+	id: ID!
+	price: Float!
+	discount: Float!
+	date: Date
+}

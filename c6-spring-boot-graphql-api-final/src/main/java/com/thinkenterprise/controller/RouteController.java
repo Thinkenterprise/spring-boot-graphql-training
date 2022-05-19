@@ -16,6 +16,7 @@
 package com.thinkenterprise.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
@@ -31,7 +32,6 @@ import com.thinkenterprise.domain.route.Flight;
 import com.thinkenterprise.domain.route.FlightRepository;
 import com.thinkenterprise.domain.route.Route;
 import com.thinkenterprise.domain.route.RouteInput;
-import com.thinkenterprise.domain.route.RouteInputPayload;
 import com.thinkenterprise.domain.route.RouteRepository;
 import com.thinkenterprise.publisher.RoutePublisher;
 
@@ -52,6 +52,12 @@ public class RouteController {
   @QueryMapping
   public List<Route> routes() {
     return routeRepository.findAll();
+  }
+  
+  @QueryMapping
+  public Route route(@Argument String flightNumber) {
+    Optional<Route> route = routeRepository.findByFlightNumber(flightNumber);
+    return route.get();
   }
 
   @SchemaMapping

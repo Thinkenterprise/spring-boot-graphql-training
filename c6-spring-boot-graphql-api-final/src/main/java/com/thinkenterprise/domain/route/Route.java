@@ -27,7 +27,7 @@ public class Route extends AbstractEntity {
   private String destination;
   private Boolean isDisabled;
 
-  private Route parent;
+  private Route route;
 
   private Set<Flight> flights = new HashSet<>();
 
@@ -98,12 +98,12 @@ public class Route extends AbstractEntity {
     this.isDisabled = isDisabled;
   }
 
-  public Route getParent() {
-    return parent;
+  public Route getRoute() {
+    return route;
   }
 
-  public void setParent(Route parent) {
-    this.parent = parent;
+  public void setRoute(Route parent) {
+    this.route = parent;
   }
 
 }

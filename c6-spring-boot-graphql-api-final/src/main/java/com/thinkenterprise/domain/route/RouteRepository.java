@@ -26,24 +26,28 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class RouteRepository {
 
-  Map<Long, Route> data = new HashMap<Long, Route>();
+	Map<Long, Route> data = new HashMap<Long, Route>();
 
-  public Route save(Route route) {
-    data.put(route.getId(), route);
-    return route;
-  }
+	public Route save(Route route) {
+		data.put(route.getId(), route);
+		return route;
+	}
 
-  public List<Route> findAll() {
-    return data.values().stream().collect(Collectors.toList());
-  }
+	public List<Route> findAll() {
+		return data.values().stream().collect(Collectors.toList());
+	}
 
-  public void deleteById(Long id) {
-    data.remove(id);
-  }
+	public void deleteById(Long id) {
+		data.remove(id);
+	}
 
-  public Optional<Route> findById(Long id) {
-    Optional<Route> route = Optional.of(data.get(id));
-    return route;
-  }
+	public Optional<Route> findById(Long id) {
+		Optional<Route> route = Optional.of(data.get(id));
+		return route;
+	}
+
+	public Optional<Route> findByFlightNumber(String flightNumber) {
+		return data.values().stream().filter(route -> route.getFlightNumber().equals(flightNumber)).findFirst();
+	}
 
 }

@@ -8,6 +8,7 @@ schema {
 
 type Query { 
 	routes: [Route]
+	route(flightNumber: String!): Route
 }
 
 type Mutation {
