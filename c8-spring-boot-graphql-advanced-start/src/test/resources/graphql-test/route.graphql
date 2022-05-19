@@ -1,0 +1,8 @@
+query ($flightNumber: String!) {
+  route(flightNumber: $flightNumber) {
+    id
+    flightNumber
+    departure
+    destination
+  }
+}

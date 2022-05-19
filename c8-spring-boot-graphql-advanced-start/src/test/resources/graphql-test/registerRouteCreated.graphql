@@ -1,0 +1,6 @@
+subscription createRouteSubscription {
+  registerRouteCreated {
+    id
+    flightNumber
+  }
+}

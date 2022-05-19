@@ -1,0 +1,95 @@
+directive @Size(min : Int = 0, max : Int = 2147483647, message : String = "graphql.validation.Size.message")
+                        on ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION
+
+scalar Date
+
+schema {
+	query: Query
+	mutation: Mutation
+	subscription: Subscription
+}
+
+type Query { 
+	routes: [Route]
+	route(flightNumber: String!): Route
+	trackings : [Tracking]
+	trackingById(id: ID!) : Tracking
+    trackingByTracking(tracking: String!): Tracking
+}
+
+type Mutation {
+	createRoute(flightNumber: String! @Size( min : 6, max : 6 )): Route
+	deleteRoute(id: ID!): Boolean
+	updateRoute(id: ID!, input: RouteInput): Route
+}
+
+
+type Subscription {
+    registerRouteCreated: Route 
+}
+
+
+# Route documentation First Line 
+# Route documentation Second Line
+type Route {
+    # id documentation 
+	id: ID!
+	flightNumber: String!
+	departure: String @deprecated(reason: "Use `newField`.")
+	destination: String
+	isDisabled: Boolean
+	flights: [Flight!]
+	route: Route 
+}
+
+type Flight {
+	id: ID!
+	price: Float!
+	route: Route!
+	discount: Float!
+	date: Date
+	employees: [Employee!]
+}
+
+interface Employee {
+	id: ID!
+	staffNumber: String!
+	lastName: String! 
+	firstName: String! 
+	role: EmployeRole!
+}
+
+type Pilot implements Employee {
+	id: ID!
+	staffNumber: String!
+	lastName: String! 
+	firstName: String! 
+	role: EmployeRole!
+	certificateNumber: String 
+}
+
+type Attendant implements Employee {
+	id: ID!
+	staffNumber: String!
+	lastName: String! 
+	firstName: String! 
+	role: EmployeRole!
+	rank: Int 
+}
+
+enum EmployeRole {
+	PILOT
+	ATTENDANT
+}
+
+input RouteInput {
+	departure: String
+	destination: String
+}
+
+type Tracking {
+	id: ID!
+	tracking: String! 
+}
+
+

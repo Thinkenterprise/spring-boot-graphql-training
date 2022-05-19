@@ -1,0 +1,30 @@
+spring:
+  graphql:
+    path: /airline
+    graphiql:
+      enabled: true
+      path: /airline/graphiql
+    schema:
+      locations: classpath:graphql/
+      printer:
+        enabled: true
+  jpa:
+    defer-datasource-initialization: true # Create JPA-Schema before(!) loading SQL scripts (override new behaviour of Spring-Boot 2.5)
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+  h2: 
+    console:
+      enabled: true
+      path: /h2-console
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=FALSE 
+  sql:
+    init:
+      platform: h2
+  # possible profiles are validation, noSecurity, basic, oauth2, test
+  profiles:
+    active:
+    - noSecurity
+    server:  port: 8080

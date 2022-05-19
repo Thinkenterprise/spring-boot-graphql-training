@@ -1,0 +1,49 @@
+spring:
+  graphql:
+    path: /airline
+    graphiql:
+      enabled: true
+      path: /airline/graphiql
+    schema:
+      locations: classpath:graphql/
+      printer:
+        enabled: true
+    websocket:
+      path: /graphql
+    rsocket:
+      mapping: /graphql
+  jpa:
+    defer-datasource-initialization: true # Create JPA-Schema before(!) loading SQL scripts (override new behaviour of Spring-Boot 2.5)
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+  h2: 
+    console:
+      enabled: true
+      path: /h2-console
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=FALSE 
+  sql:
+    init:
+      platform: h2
+  # possible profiles are validation, noSecurity, basic, oauth2, test, fast, cache
+  profiles:
+    active:
+    - noSecurity
+  security:
+    oauth2:
+      resourceserver:
+        jwt: 
+          public-key-location: public-key.txt                 
+management:  endpoints:    web:      discovery:        enabled: true
+      exposure:        include:        - metrics
+  metrics:    graphql:      autotime:        enabled: true
+        
+dataLoaderOptions:
+  batchingEnabled: true
+  maxBatchSize: 100
+  cachingEnabled: true
+  cachingExceptionsEnabled: false
+  valueCacheEnabled: true
+  server:  port: 8080

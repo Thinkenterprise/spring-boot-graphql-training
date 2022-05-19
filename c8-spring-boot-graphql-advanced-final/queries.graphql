@@ -1,0 +1,46 @@
+subscription registerRouteCreated {
+  registerRouteCreated {
+    id
+  }
+}
+
+mutation createRoute {
+  createRoute(flightNumber: "LH1234") {
+    id
+    flightNumber
+    isDisabled
+  }
+}
+
+mutation updateRoute($routeInput: RouteInput = {departure: "BER", destination: "MUC"}) {
+  updateRoute(id: 101, input: $routeInput) {
+    id
+    flightNumber
+    departure
+    destination
+  }
+}
+
+mutation deleteRoute {
+  deleteRoute(id: 101)
+}
+
+query routes {
+  routes {
+    id
+    flightNumber
+    flights {
+      id
+      date
+      employees {
+        id
+        ... on Attendant {
+          rank
+        }
+        ... on Pilot {
+          certificateNumber
+        }
+      }
+    }
+  }
+}

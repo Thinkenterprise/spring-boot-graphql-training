@@ -1,0 +1,11 @@
+mutation ($id: ID!, $departure: String!, $destination: String!) {
+  updateRoute(
+    id: $id
+    input: {departure: $departure, destination: $destination}
+  ) {
+    id
+    flightNumber
+    departure
+    destination
+  }
+}

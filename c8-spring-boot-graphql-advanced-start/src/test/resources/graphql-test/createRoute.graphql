@@ -1,0 +1,6 @@
+mutation ($flightNumber: String!) {
+  createRoute(flightNumber: $flightNumber) {
+    id
+    flightNumber
+  }
+}

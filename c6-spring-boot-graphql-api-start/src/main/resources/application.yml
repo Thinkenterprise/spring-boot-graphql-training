@@ -1,0 +1,12 @@
+spring:
+  graphql:
+    path: /airline
+    graphiql:
+      enabled: true
+      path: /airline/graphiql
+    schema:
+      locations: classpath:graphql/
+      printer:
+        enabled: true
+    websocket:
+      path: /graphql  

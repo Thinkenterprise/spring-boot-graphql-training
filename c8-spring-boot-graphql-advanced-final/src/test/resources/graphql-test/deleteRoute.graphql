@@ -1,0 +1,8 @@
+mutation ($id: ID!) {
+  deleteRoute(id: $id) {
+    id
+    flightNumber
+    departure
+    destination
+  }
+}
