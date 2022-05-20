@@ -2,6 +2,8 @@
 
 ## Lesen über den GraphQL Controller   
 
+Aufgabe 1: Erstellen Sie einen GraphQL Controller, über den alle verfügbaren Route Objekte gelesen werden können. Es soll der gesamte Graph, von Route über Flight bis Employee, ausgelesen werden können. Überprüfen Sie Ihre Implementierung mit GraphiQL.
+
 Für das Testen des Controllers über GraphiQL können Sie die Queries unter ``queries.graphql`` verwenden. 
 Für diesen Test ist die Query ``routes`` zu verwenden. 
 
@@ -38,10 +40,13 @@ public class RouteController {
 
 ## Schreiben über den GraphQL Controller   
 
+Aufgabe 2: Erweitern Sie den GraphQL Controller um eine Mutation so, dass über diese eine neue Route erstellt werden kann. Überprüfen Sie Ihre Implementierung mit GraphiQL.
+
 Fügen Sie dem GraphQL Controller folgende Mutation für das Schreiben hinzu. 
 
 Für das Testen des Controllers über GraphiQL können Sie die Queries unter ``queries.graphql`` verwenden. 
 Für diesen Test ist die Query ``createRoute`` zu verwenden.
+
 ```
 @Controller
 public class RouteController {
@@ -58,7 +63,9 @@ public class RouteController {
 
 ## Registrieren über den GraphQL Controller   
 
-Fügen Sie dem GraphQL Controller folgende Subscription für die Anmeldung hinzu 
+Aufgabe 3: Erweitern Sie den GraphQL Controller um eine Subscription so, dass eine Registrierung auf das Event “Es wurde eine neue Route erstellt” möglich ist. Senden Sie ein Route Event an den Client, sobald eine neue Route erstellt wurde. Überprüfen Sie Ihre Implementierung mit GraphiQL.
+
+Fügen Sie dem GraphQL Controller folgende Subscription hinzu. 
 
 Für das Testen des Controllers über GraphiQL können Sie die Queries unter ``queries.graphql`` verwenden. 
 Für diesen Test ist die Query ``createRoute`` zu verwenden.

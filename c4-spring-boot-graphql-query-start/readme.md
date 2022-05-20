@@ -1,7 +1,7 @@
 # Übungsaufgabe Kapitel 4 GraphQL Query Language 
 
 ## Abfrage aller Routen 
-Frage 1: Fragen Sie alle Routen ab.
+Aufgabe 1: Fragen Sie alle Routen ab.
 
 ```
 query routes {
@@ -12,7 +12,7 @@ query routes {
 ```
 
 ## Variablen  
-Frage 2: Erstellen Sie zwei Variablen für das Pagination und verwenden Sie diese
+Aufgabe 2: Erstellen Sie zwei Variablen für das Pagination und verwenden Sie diese
 
 ```
 query route {
@@ -24,7 +24,7 @@ query route {
 ```
 
 ## Verschiedene Queries  
-Frage 3: Fragen Sie alle Routen mit drei verschiedenen Queries ab, die unterschiedliche Felder anzeigen.
+Aufgabe 3: Fragen Sie alle Routen mit drei verschiedenen Queries ab, die unterschiedliche Felder anzeigen.
 
 
 ```
@@ -64,7 +64,7 @@ query routes {
 ```
 
 ## Fragmente  
-Frage 4: Erstellen Sie ein Fragment, über das Sie immer wiederkehrende Felder zusammenfassen. 
+Aufgabe 4: Erstellen Sie ein Fragment, über das Sie immer wiederkehrende Felder zusammenfassen. 
 
 ```
 fragment routeDetails on Route {
@@ -81,10 +81,7 @@ query queryWithFragment{
 ```
 
 ## Inline Fragment 
-
-Frage 5: Fragen Sie über ein Inline Fragment alle unterschiedlichen Employee aller Flüge ab.
-
-
+Aufgabe 5: Fragen Sie über ein Inline Fragment alle unterschiedlichen Employee aller Flüge ab.
 
 ```
 query routes {

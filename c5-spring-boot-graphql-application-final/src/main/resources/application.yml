@@ -7,4 +7,5 @@ spring:
     schema:
       locations: classpath:graphql/
       printer:
-        enabled: true  
+        enabled: true    websocket:
+      path: /graphql

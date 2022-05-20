@@ -1,6 +1,8 @@
-# Data 
+# Übungsaufgabe Kapitel 7 GraphQL Enterprise  
 
 ## Repositories verwenden 
+Aufgabe 1: Verwenden Sie in dem GraphQL RouteController die bestehenden Repositories für den Zugriff auf die Datenbank. 
+
 Bisher wurden **Mocks** als Datenquelle in den GraphQL Controllern verwendet. Tauschen Sie diese gegen die Repositories aus. 
 Die folgende Abbildung zeigt die Verwendung des ``RouteRepositories`` für den ``RouteController`` und eine Methode ``routes``. 
 
@@ -20,6 +22,7 @@ public class RouteController {
 ```
 
 # Exceptions
+Aufgabe 2:Für das GraphQL Root Feld route soll eine Fehlerbehandlung eingeführt werden. Immer dann, wenn für die Flugnummer keine passende Route gefunden werden konnte, soll ein GraphQL Error, mit einer passenden Fehlermeldung, zurückgegeben werden. Dabei soll der GraphQL Fehler auch den Ort beinhalten, wo der Fehler aufgetreten ist. 
 
 ## Exception werfen 
 Implementieren Sie im ``RouteController`` das Werfen der Exception. Die folgende Abbildung zeigt, wie die Exception ``RouteException`` geworfen wird, sofern die ``Route`` über die ``Flugnummer`` nicht gefunden wird. 
@@ -37,8 +40,6 @@ public Route route(String flightNumber) {
 
 ## Exception Resolver implementieren 
 Erstellen Sie einen eigenen ``DataFetcherExceptionResolver``, der die Exception ``RouteException`` abfängt und eine geeigneten GraphQL Error erzeugt. 
-
-
 
 ```
 @Component
@@ -60,7 +61,7 @@ public class RouteExceptionResolver implements DataFetcherExceptionResolver {
 ```
 
 ## Exception Testen 
-Prüfen Sie die Fehlerbehandlung, indem Sie über GraphQLiQL folgende Query eingeben. Das die Flugnummer nicht exisitert müsste eine Exception geworfen werden.
+Prüfen Sie die Fehlerbehandlung, indem Sie über GraphQLiQL folgende Query eingeben.
 
 ```
 query routeException {
@@ -71,8 +72,11 @@ query routeException {
 }
 ```
 
-# Test
+Da die Flugnummer nicht exisitert müsste eine Exception geworfen werden.
 
+
+# Test
+Aufgabe 3 : Führen Sie für die GraphQL Query routes { id departure } einen realen Test ein, der prüft, ob in dem gelieferten Ergebnis drei Routen enthalten sind. 
 
 ## Spring Boot Test Dependency hinzufügen  
 
@@ -86,7 +90,6 @@ Fügen Sie bitte den **Spring Boot Test Starter** hinzu.
 </dependency>
 
 ```
-
 ## Spring GraphQL Test Dependency hinzufügen  
 
 Fügen Sie bitte den **Spring GraphQL Test**  hinzu. 
@@ -112,9 +115,10 @@ Fügen Sie bitte den **Spring Boot Weblux Starter**  hinzu.
 </dependency>
 ```
 
+
 ## Test implementieren 
 
-Implementieren Sie den Test wie folgt und führen Sie diesen aus. Die GraphQL Query Datei ``routes.graphql`` ist unter ``resources/graphQL`` abgelegt. 
+Implementieren Sie den Test wie folgt und führen Sie diesen aus. Die GraphQL Query Datei ``routes.graphql`` ist unter ``resources/graphql-test`` abgelegt. 
 
 ```
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
@@ -140,10 +144,10 @@ Führen Sie den Test über die gewählte IDE oder über die Konsole aus.
 
 
 # Security OAuth2 
+Aufgabe 4: Führen Sie eine Authentifizierung und Autorisierung über OAuth2/JWT ein. Es soll nur möglich sein, mit einem validen Token auf das GraphQL-Web-API zuzugreifen. Zudem soll der Benutzer beim Aufruf des GraphQL Feldes routes, das recht read besitzen. Verwenden Sie als JWT-Token den bereitgestellten Token in der Datei request-header-graphiql-oAuth2-security.json. 
 
 ## Security Dependency 
 Fügen Sie die **Spring Boot Security Starter** Dependency hinzu.  
-
 
 ```
 <dependency>
@@ -176,7 +180,6 @@ spring:
           public-key-location: public-key.txt
 
 ```
-
 
 ## Security Configuration 
 Fügend Sie die folgende Spring Konfiguration hinzu. Diese Konfiguration ist nur notwendig, damit Sie weiterhin die URLs ``/ariline`` und ``/airline/graphiql`` aufrufen können, ohne einen Token angeben zu müssen. Denn den Token möchten wir ja erst über GraphQLiQL bei unseren Aufrufen definieren. 

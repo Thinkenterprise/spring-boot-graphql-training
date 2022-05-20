@@ -17,6 +17,7 @@ package com.thinkenterprise.controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
@@ -40,61 +41,64 @@ import reactor.core.publisher.Flux;
 @Controller
 public class RouteController {
 
-  @Autowired
-  private RouteRepository routeRepository;
-  @Autowired
-  private FlightRepository flightRepository;
-  @Autowired
-  private EmployeeRepository employeeRepository;
-  @Autowired
-  private RoutePublisher routePublisher;
+	@Autowired
+	private RouteRepository routeRepository;
+	@Autowired
+	private FlightRepository flightRepository;
+	@Autowired
+	private EmployeeRepository employeeRepository;
+	@Autowired
+	private RoutePublisher routePublisher;
 
-  @QueryMapping
-  public List<Route> routes() {
-    return routeRepository.findAll();
-  }
-  
-  @QueryMapping
-  public Route route(@Argument String flightNumber) {
-    Optional<Route> route = routeRepository.findByFlightNumber(flightNumber);
-    return route.get();
-  }
+	private Random random = new Random();
 
-  @SchemaMapping
-  public List<Flight> flights(Route route) {
-    return flightRepository.findByRoute(route);
-  }
+	@QueryMapping
+	public List<Route> routes() {
+		return routeRepository.findAll();
+	}
 
-  @SchemaMapping
-  public List<Employee> employees(Flight flight) {
-    return employeeRepository.findByFlight(flight);
-  }
+	@QueryMapping
+	public Route route(@Argument String flightNumber) {
+		Optional<Route> route = routeRepository.findByFlightNumber(flightNumber);
+		return route.get();
+	}
 
-  @MutationMapping
-  public Route createRoute(@Argument String flightNumber) {
-    Route route = new Route();
-    route.setFlightNumber(flightNumber);
-    route=routeRepository.save(route);
-    routePublisher.emit(route);
-    return route;
-  }
+	@SchemaMapping
+	public List<Flight> flights(Route route) {
+		return flightRepository.findByRoute(route);
+	}
 
-  @MutationMapping
-  public Boolean deleteRoute(@Argument Long id) {
-    routeRepository.deleteById(id);
-    return true;
-  }
+	@SchemaMapping
+	public List<Employee> employees(Flight flight) {
+		return employeeRepository.findByFlight(flight);
+	}
 
-  @SchemaMapping(typeName = "Mutation")
-  public Route updateRoute(@Argument Long id, @Argument RouteInput input) {
-    Route route = routeRepository.findById(id).get();
-    route.setDeparture(route.getDeparture());
-    route.setDestination(route.getDestination());
-    return routeRepository.save(route);
-  }
+	@MutationMapping
+	public Route createRoute(@Argument String flightNumber) {
+		Route route = new Route();
+		route.setId((long) random.nextInt(100));
+		route.setFlightNumber(flightNumber);
+		route = routeRepository.save(route);
+		routePublisher.emit(route);
+		return route;
+	}
 
-  @SubscriptionMapping
-  public Flux<Route> registerRouteCreated() {
-    return routePublisher.getPublisher();
-  }
+	@MutationMapping
+	public Boolean deleteRoute(@Argument Long id) {
+		routeRepository.deleteById(id);
+		return true;
+	}
+
+	@SchemaMapping(typeName = "Mutation")
+	public Route updateRoute(@Argument Long id, @Argument RouteInput input) {
+		Route route = routeRepository.findById(id).get();
+		route.setDeparture(route.getDeparture());
+		route.setDestination(route.getDestination());
+		return routeRepository.save(route);
+	}
+
+	@SubscriptionMapping
+	public Flux<Route> registerRouteCreated() {
+		return routePublisher.getPublisher();
+	}
 }

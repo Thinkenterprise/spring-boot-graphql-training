@@ -1,4 +1,7 @@
+# Übungsaufgabe Kapitel 8 GraphQL Advanced   
+
 # Metriken 
+Aufgabe 1: Die Zeit für einen GraphQL Request soll, über die von dem Spring Boot Actuator bereitgestellten GraphQL Metriken, gemessen werden
 
 ## Actuator hinzufügen 
 
@@ -11,7 +14,6 @@ Fügen Sie die **Spring Boot Actuator** Dependency hinzu.
 </dependency>
 
 ```
-
 
 ## Metric Endpoint freigeben 
 
@@ -39,11 +41,14 @@ management:
 ## Metriken abrufen 
 
  ```
-http://localhost:8080/actuator/metrics/graphql.datafetch.count
+http://localhost:8080/actuator/metrics/graphql
 ```
 
-# Performance 
+Achtung, bevor Sie eine Metrik sehen, müssen sie mindestens einen GraphQL Operation z.B. einer ``query`` durchgeführt haben. 
 
+
+# Performance 
+Aufgabe 2: Der Preis discount eines Flugs Flight wird über den DiscountService bestimmt, indem dieser für jeden zu bestimmenden Discount ein REST-API-Request auf einem Fremdsystem durchführt. Das führt zu sehr vielen REST-API-Requests, die insgesamt zu einer sehr langen Ausführungszeit führen. Aus diesem Grund sollen die vielen REST-API-Requests durch einen Batchaufruf ersetzt werden. Optimieren Sie die Ermittlung des Discounts durch einen Batchaufruf. Prüfen Sie nach der Optimierung, ob sich die Zeit für einen GraphQL-Request reduziert hat.   
 
 ## Fast Controler implementieren 
 
@@ -108,7 +113,7 @@ und Messen Sie über die Metrik ``graphql.request`` die zeitliche Verbesserung.
 
 
 # Instrumentation 
-
+Aufgabe 4: Über eine Instrumentation soll die Anzahl aller Aufrufe auf DataFetcher bestimmt werden. Implementieren Sie eine eigene Instrumentation, die nach jedem GraphQL Request die Anzahl der Aufrufe über das Logging auf der Konsole ausgibt. 
 
 ## Instrumentation implementieren 
 
