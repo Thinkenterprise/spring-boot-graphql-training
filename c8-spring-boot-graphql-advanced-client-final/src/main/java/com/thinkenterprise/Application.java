@@ -34,10 +34,10 @@ import reactor.core.publisher.Mono;
 public class Application {
 
     public static void main(String[] args) {
-        //SpringApplication.run(Application.class, args);
-        
         
         WebClient client = WebClient.create("http://localhost:8080/airline");
+        
+        
         GraphQlClient graphQlClient = HttpGraphQlClient.create(client);
         
         Mono<Route> route = graphQlClient.documentName("route") 

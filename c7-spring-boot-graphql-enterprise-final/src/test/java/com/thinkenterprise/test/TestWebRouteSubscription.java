@@ -61,9 +61,4 @@ public class TestWebRouteSubscription {
 		verifier.verify();
 	}
 	
-	@Test
-	@DisplayName("Test to query all routes")
-	public void routes() {
-		webGraphQlTester.documentName("routes").execute().path("routes[*]").entityList(Route.class).hasSize(3);
-	}
 }

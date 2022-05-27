@@ -35,7 +35,7 @@ spring:
     oauth2:
       resourceserver:
         jwt: 
-          public-key-location: public-key.txt                 
+          public-key-location: classpath:public-key.txt                 
 management:  endpoints:    web:      discovery:        enabled: true
       exposure:        include:        - metrics
   metrics:    graphql:      autotime:        enabled: true
