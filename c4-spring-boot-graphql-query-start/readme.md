@@ -10,7 +10,8 @@ mvn spring-boot:run
 ```
 Über folgende URL können Sie dann den GraphQL Query Editor starten, mit dem Sie die Queries ausführen und testen können. 
 
-```localhost:8080/airline/graphiql 
+```
+localhost:8080/airline/graphiql 
 ```
 
 ## Abfrage aller Routen 
