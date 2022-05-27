@@ -1,5 +1,18 @@
 # Übungsaufgabe Kapitel 4 GraphQL Query Language 
 
+## Voraussetzung 
+Damit die GraphQL Queries ausgeführt werden können, ist zuvor eine Anwendung zu starten, welche das GraphQL API bereitstellt. 
+Gehen Sie in das Projekt ``c6-spring-boot-graphql-api-final`` und bauen und starten Sie das Projekt wie folgt: 
+
+```
+mvn clean package 
+mvn spring-boot:run
+```
+Über folgende URL können Sie dann den GraphQL Query Editor starten, mit dem Sie die Queries ausführen und testen können. 
+
+```localhost:8080/airline/graphiql 
+```
+
 ## Abfrage aller Routen 
 Aufgabe 1: Fragen Sie alle Routen ab.
 
