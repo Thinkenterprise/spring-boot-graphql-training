@@ -28,9 +28,12 @@ query routes {
 ```
 
 ## Variablen  
-Aufgabe 2: Erstellen Sie zwei Variablen für das Pagination und verwenden Sie diese
+Aufgabe 2: Erstellen Sie zwei Variablen für das Pagination und verwenden Sie diese. 
+
 **Achtung** kleine Korrektur. 
+
 Aufgabe 2: Es soll über eine ``flightNumber`` Variabel eine konkrete Route abgefragt werden. 
+
 ```
 query route {
   route(flightNumber: "LH7902") {
