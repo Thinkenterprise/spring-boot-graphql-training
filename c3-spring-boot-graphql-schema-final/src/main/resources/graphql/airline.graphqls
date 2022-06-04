@@ -20,6 +20,8 @@ type Route {
 	flights: [Flight!]
 }
 
+scalar Date
+
 type Flight {
 	id: ID!
 	price: Float!

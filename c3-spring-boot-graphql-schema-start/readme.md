@@ -11,7 +11,7 @@ Flight siehe Abbildung 1
 type Route {
 	id: ID!
 	flightNumber: String!
-	departure: String @deprecated(reason: "Use `newField`.")
+	departure: String 
 	destination: String
 	isDisabled: Boolean
 	flights: [Flight!]
@@ -31,7 +31,7 @@ type Flight {
 }
 ```
 
-## Root Oerations erstellen  
+## Root Operations erstellen  
 Aufgabe 2: Erstellen sie die Root Operations, für die Abfrage aller Route und der Erzeugung genau einer Route. 
 
 ```
@@ -67,7 +67,7 @@ type Mutation {
 }
 ```
 ## Directive verwenden 
-Aufgabe 4: Markieren Sie das Feld departure über eine Directive als depricated
+Aufgabe 4: Markieren Sie das Feld departure über eine Directive als deprecated
 
 ```
 type Route {

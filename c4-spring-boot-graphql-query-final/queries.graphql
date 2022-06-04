@@ -54,3 +54,22 @@ query queryWithFragment{
   }
 }
 
+query routes {
+  routes {
+    id
+    flightNumber
+    flights {
+      id
+      date
+      employees {
+        id
+        ... on Attendant {
+          rank
+        }
+        ... on Pilot {
+          certificateNumber
+        }
+      }
+    }
+  }
+}

@@ -10,10 +10,6 @@ Aufgabe 1: Binden Sie über das pom.xml die richtigen Starter ein, sodass sie di
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-			<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-websocket</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-graphql</artifactId>
@@ -53,6 +49,10 @@ localhost:8080/airline/graphiql
 ```
 
 ## GraphQL API-Anwendung testen 
+
+**Achtung kleine Korrektur**. Im Buch wird eine Query verwendet, die nicht funktioniert. Die hier angegebene Query funktioniert. 
+
+
 Aufgabe 5: Setzen Sie die folgende GraphQL Query ab. 
 
 ```

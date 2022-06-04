@@ -124,21 +124,3 @@ query routes {
   }
 }
 ```
-
-
-
-Root Operations für das Lesen definieren 
-
-```
-type Query { 
-	routes: [Route]
-}
-```
-
-Root Operation für das Schreiben definieren 
-
-```
-type Mutation {
-	createRoute(flightNumber: String!): Route
-}
-```
