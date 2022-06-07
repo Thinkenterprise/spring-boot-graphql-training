@@ -48,7 +48,7 @@ Achtung, bevor Sie eine Metrik sehen, müssen sie mindestens einen GraphQL Opera
 
 
 # Performance 
-Aufgabe 2: Der Preis discount eines Flugs Flight wird über den DiscountService bestimmt, indem dieser für jeden zu bestimmenden Discount ein REST-API-Request auf einem Fremdsystem durchführt. Das führt zu sehr vielen REST-API-Requests, die insgesamt zu einer sehr langen Ausführungszeit führen. Aus diesem Grund sollen die vielen REST-API-Requests durch einen Batchaufruf ersetzt werden. Optimieren Sie die Ermittlung des Discounts durch einen Batchaufruf. Prüfen Sie nach der Optimierung, ob sich die Zeit für einen GraphQL-Request reduziert hat.   
+Aufgabe 2: Der Preis Discount eines Flugs Flight wird über den DiscountService bestimmt, indem dieser für jeden zu bestimmenden Discount ein REST-API-Request auf einem Fremdsystem durchführt. Das führt zu sehr vielen REST-API-Requests, die insgesamt zu einer sehr langen Ausführungszeit führen. Aus diesem Grund sollen die vielen REST-API-Requests durch einen Batchaufruf ersetzt werden. Optimieren Sie die Ermittlung des Discounts durch einen Batchaufruf. Prüfen Sie nach der Optimierung, ob sich die Zeit für einen GraphQL-Request reduziert hat.   
 
 ## Fast Controler implementieren 
 
