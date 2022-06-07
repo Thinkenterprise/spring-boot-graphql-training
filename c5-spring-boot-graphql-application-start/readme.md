@@ -17,7 +17,7 @@ Aufgabe 1: Binden Sie über das pom.xml die richtigen Starter ein, sodass sie di
 	</dependencies>
 ```
 
-## GraphQL Entpoint konfigurieren  
+## GraphQL Endpoint konfigurieren  
 Aufgabe 2: Konfigurieren Sie die GraphQL Web-API-Anwendung über Spring-Properties so, dass die GraphQL Web-API über die URL localhost:8080/airline angesprochen werden kann. 
 
 ```
