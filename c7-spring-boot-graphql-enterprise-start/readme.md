@@ -22,7 +22,7 @@ public class RouteController {
 ```
 
 # Exceptions
-Aufgabe 2:Für das GraphQL Root Feld route soll eine Fehlerbehandlung eingeführt werden. Immer dann, wenn für die Flugnummer keine passende Route gefunden werden konnte, soll ein GraphQL Error, mit einer passenden Fehlermeldung, zurückgegeben werden. Dabei soll der GraphQL Fehler auch den Ort beinhalten, wo der Fehler aufgetreten ist. 
+Aufgabe 2: Für das GraphQL Root Feld route soll eine Fehlerbehandlung eingeführt werden. Immer dann, wenn für die Flugnummer keine passende Route gefunden werden konnte, soll ein GraphQL Error, mit einer passenden Fehlermeldung, zurückgegeben werden. Dabei soll der GraphQL Fehler auch den Ort beinhalten, wo der Fehler aufgetreten ist. 
 
 ## Exception werfen 
 Implementieren Sie im ``RouteController`` das Werfen der Exception. Die folgende Abbildung zeigt, wie die Exception ``RouteException`` geworfen wird, sofern die ``Route`` über die ``Flugnummer`` nicht gefunden wird. 
@@ -76,7 +76,7 @@ Da die Flugnummer nicht exisitert müsste eine Exception geworfen werden.
 
 
 # Test
-Aufgabe 3 : Führen Sie für die GraphQL Query routes { id departure } einen realen Test ein, der prüft, ob in dem gelieferten Ergebnis drei Routen enthalten sind. 
+Aufgabe 3: Führen Sie für die GraphQL Query routes { id departure } einen realen Test ein, der prüft, ob in dem gelieferten Ergebnis drei Routen enthalten sind. 
 
 ## Spring Boot Test Dependency hinzufügen  
 
@@ -144,7 +144,7 @@ Führen Sie den Test über die gewählte IDE oder über die Konsole aus.
 
 
 # Security OAuth2 
-Aufgabe 4: Führen Sie eine Authentifizierung und Autorisierung über OAuth2/JWT ein. Es soll nur möglich sein, mit einem validen Token auf das GraphQL-Web-API zuzugreifen. Zudem soll der Benutzer beim Aufruf des GraphQL Feldes routes, das recht read besitzen. Verwenden Sie als JWT-Token den bereitgestellten Token in der Datei request-header-graphiql-oAuth2-security.json. 
+Aufgabe 4: Führen Sie eine Authentifizierung und Autorisierung über OAuth2/JWT ein. Es soll nur möglich sein, mit einem validen Token auf das GraphQL-Web-API zuzugreifen. Zudem soll der Benutzer beim Aufruf des GraphQL Feldes routes, das Recht read besitzen. Verwenden Sie als JWT-Token den bereitgestellten Token in der Datei request-header-graphiql-oAuth2-security.json. 
 
 ## Security Dependency 
 Fügen Sie die **Spring Boot Security Starter** Dependency hinzu.  
