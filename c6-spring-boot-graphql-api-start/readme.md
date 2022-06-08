@@ -23,6 +23,39 @@ public class RouteController {
     
     @QueryMapping
     public List<Route> routes() {
+        //TODO
+    }
+    
+    @SchemaMapping
+    public List<Flight> flights(Route route) {
+    	//TODO
+    }
+    
+    @SchemaMapping
+    public List<Employee> employees(Flight flight) {
+    	//TODO
+    }
+}
+```
+
+<details>
+	<summary>Vollständiges Snippet</summary>
+	
+```
+@Controller
+public class RouteController {
+    
+    @Autowired
+    private RouteRepository routeRepository;
+    
+    @Autowired
+    private FlightRepository flightRepository;
+    
+    @Autowired 
+    private EmployeeRepository employeeRepository;
+    
+    @QueryMapping
+    public List<Route> routes() {
         return routeRepository.findAll();
     }
     
@@ -37,6 +70,7 @@ public class RouteController {
     }
 }
 ```
+</details>
 
 ## Schreiben über den GraphQL Controller   
 
@@ -53,6 +87,21 @@ public class RouteController {
   
     @MutationMapping
     public Route createRoute(@Argument String flightNumber) {  	
+        //TODO	
+    }
+    
+}
+```
+
+<details>
+	<summary>Vollständiges Snippet</summary>
+	
+```
+@Controller
+public class RouteController {
+  
+    @MutationMapping
+    public Route createRoute(@Argument String flightNumber) {  	
     	Route route = new Route();	
     	route.setFlightNumber(flightNumber);
     	return routeRepository.save(route); 	
@@ -60,6 +109,7 @@ public class RouteController {
     
 }
 ```
+</details>
 
 ## Registrieren über den GraphQL Controller   
 
@@ -79,16 +129,53 @@ public class RouteController {
     private RoutePublisher routePublisher;
        
     @SubscriptionMapping
+    //TODO
+}
+```
+
+<details>
+	<summary>Vollständiges Snippet</summary>
+	
+```
+@Controller
+public class RouteController {
+    
+    @Autowired
+    private RoutePublisher routePublisher;
+       
+    @SubscriptionMapping
     public Flux<Route> registerRouteCreated() {
     	return routePublisher.getPublisher();    	
     } 
 }
 ```
+</details>
 
 ## Client über GraphQL Controller Nachricht senden    
 
 Die Mutation wird so angepasst, dass wenn eine Route erzeugt wurde, dem Client eine Nachricht gesendet wird. 
 
+```
+@Controller
+public class RouteController {
+       
+    @Autowired
+    private RoutePublisher routePublisher;
+    
+    @MutationMapping
+    public Route createRoute(@Argument String flightNumber) {  	
+    	Route route = new Route();	
+    	route.setFlightNumber(flightNumber);
+    	//TODO
+    	return routeRepository.save(route); 	
+    }
+        
+}
+```
+    
+<details>
+	<summary>Vollständiges Snippet</summary>
+	
 ```
 @Controller
 public class RouteController {
@@ -106,3 +193,4 @@ public class RouteController {
         
 }
 ```
+</details>
