@@ -64,6 +64,36 @@ public class FastFlightController {
     private DiscountService discountService;
     
     public FastFlightController(BatchLoaderRegistry batchLoaderRegistry) {
+	//TODO               
+    }
+    
+    @SchemaMapping
+    public List<Employee> employees(Flight flight) {
+    	return employeeRepository.findByFlight(flight);
+    }  
+    
+    @SchemaMapping
+    public CompletableFuture<Float>  discount(Flight flight, DataLoader<Long, Float> discountBatchLoader) {
+    	return discountBatchLoader.load(flight.getId());
+    }
+    
+}
+
+```
+
+<details>
+	<summary>Vollständiges Snippet</summary>
+	
+```
+@Controller
+@Profile("batch")
+public class FastFlightController { 
+    @Autowired 
+    private EmployeeRepository employeeRepository;    
+    @Autowired
+    private DiscountService discountService;
+    
+    public FastFlightController(BatchLoaderRegistry batchLoaderRegistry) {
          batchLoaderRegistry.forTypePair(Long.class, Float.class)
                  .registerBatchLoader(
                          (keys, batchEnvironment) -> Flux.fromIterable(discountService.getDiscountByIds(keys)));                        
@@ -80,8 +110,9 @@ public class FastFlightController {
     }
     
 }
-
 ```
+</details>
+
 ## Fast Profile setzen 
 
 ```
@@ -127,6 +158,49 @@ public class DataFetcherAccessConterInstrumentation extends SimpleInstrumentatio
 
     @Override
     public InstrumentationContext<ExecutionResult> beginField(InstrumentationFieldParameters parameters) {
+        //TODO
+    }
+
+    @Override
+    public InstrumentationContext<ExecutionResult> beginExecuteOperation(InstrumentationExecuteOperationParameters parameters) {
+        //TODO
+    }
+
+    public static class DataFetcherAccessConterInstrumentationState implements InstrumentationState {
+
+        Integer count;
+
+        private DataFetcherAccessConterInstrumentationState(Integer count) {
+            this.count=count;
+        }
+
+        public Integer getCount() {
+            return count;
+        }
+
+        public void setCount(Integer count) {
+            this.count = count;
+        } 
+
+    }
+    
+}
+
+```
+
+<details>
+	<summary>Vollständiges Snippet</summary>
+	
+```
+@Component
+public class DataFetcherAccessConterInstrumentation extends SimpleInstrumentation {
+
+    public InstrumentationState createState() {
+        return new DataFetcherAccessConterInstrumentationState(0);    
+    }
+
+    @Override
+    public InstrumentationContext<ExecutionResult> beginField(InstrumentationFieldParameters parameters) {
         DataFetcherAccessConterInstrumentationState state = parameters.getInstrumentationState();
         return SimpleInstrumentationContext.whenCompleted((data, exception) -> state.setCount(state.getCount()+1));
     }
@@ -156,12 +230,6 @@ public class DataFetcherAccessConterInstrumentation extends SimpleInstrumentatio
     }
     
 }
-
 ```
-
-
-
-
-
-
+</details>
 
