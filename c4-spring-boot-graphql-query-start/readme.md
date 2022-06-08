@@ -21,19 +21,41 @@ Aufgabe 1: Fragen Sie alle Routen ab.
 
 ```
 query routes {
+  //TODO
+}
+```
+
+<details>
+	<summary>Vollständiges Snippet</summary>
+	
+```
+query routes {
   routes {
     id
   }
 }
 ```
+</details>
 
 ## Variablen  
 Aufgabe 2: Erstellen Sie zwei Variablen für das Pagination und verwenden Sie diese. 
 
 **Achtung** kleine Korrektur. 
 
-Aufgabe 2: Es soll über eine ``flightNumber`` Variabel eine konkrete Route abgefragt werden. 
+Aufgabe 2: Es soll über eine ``flightNumber`` Variable eine konkrete Route abgefragt werden. 
 
+```
+query route {
+  route {
+    id
+    flightNumber
+  }
+}
+```
+
+<details>
+	<summary>Vollständiges Snippet</summary>
+	
 ```
 query route {
   route(flightNumber: "LH7902") {
@@ -42,6 +64,7 @@ query route {
   }
 }
 ```
+</details>
 
 ## Verschiedene Queries  
 Aufgabe 3: Fragen Sie alle Routen mit drei verschiedenen Queries ab, die unterschiedliche Felder anzeigen.
@@ -88,6 +111,22 @@ Aufgabe 4: Erstellen Sie ein Fragment, über das Sie immer wiederkehrende Felder
 
 ```
 fragment routeDetails on Route {
+  //TODO
+}
+
+query queryWithFragment{
+  route(flightNumber: "LH7902") {
+   ...routeDetails
+   isDisabled
+  }
+}
+```
+
+<details>
+	<summary>Vollständiges Snippet</summary>
+	
+```
+fragment routeDetails on Route {
   id
   flightNumber
 }
@@ -99,10 +138,31 @@ query queryWithFragment{
   }
 }
 ```
+</details>
 
 ## Inline Fragment 
 Aufgabe 5: Fragen Sie über ein Inline Fragment alle unterschiedlichen Employee aller Flüge ab.
 
+```
+query routes {
+  routes {
+    id
+    flightNumber
+    flights {
+      id
+      date
+      employees {
+        id
+        //TODO
+      }
+    }
+  }
+}
+```
+
+<details>
+	<summary>Vollständiges Snippet</summary>
+	
 ```
 query routes {
   routes {
@@ -124,3 +184,4 @@ query routes {
   }
 }
 ```
+</details>
