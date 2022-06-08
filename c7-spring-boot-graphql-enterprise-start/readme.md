@@ -32,15 +32,48 @@ Implementieren Sie im ``RouteController`` das Werfen der Exception. Die folgende
 public Route route(String flightNumber) {
 	Optional<Route> route = routeRepository.findByFlightNumber(flightNumber);	
    	if(route.isEmpty()) 
-    		throw new RouteException("Hello this is a Route Exception");
+    		//TODO
     	else 
     		return route.get();	
     }
 ```
 
+<details>
+	<summary>Vollständiges Snippet</summary>
+	
+```
+@QueryMapping
+public Route route(String flightNumber) {
+	Optional<Route> route = routeRepository.findByFlightNumber(flightNumber);	
+   	if(route.isEmpty()) 
+    		throw new RouteException("Hello this is a Route Exception");
+    	else 
+    		return route.get();	
+    }
+```
+</details>
+
 ## Exception Resolver implementieren 
 Erstellen Sie einen eigenen ``DataFetcherExceptionResolver``, der die Exception ``RouteException`` abfängt und eine geeigneten GraphQL Error erzeugt. 
 
+```
+@Component
+public class RouteExceptionResolver implements DataFetcherExceptionResolver {
+
+    @Override
+    public Mono<List<GraphQLError>> resolveException(Throwable exception, DataFetchingEnvironment environment) {
+
+        if (exception instanceof RouteException) {
+		//TODO
+        }
+        return Mono.empty();
+    }
+}
+```
+	
+<details>
+	<summary>Vollständiges Snippet</summary>
+	
 ```
 @Component
 public class RouteExceptionResolver implements DataFetcherExceptionResolver {
@@ -59,6 +92,7 @@ public class RouteExceptionResolver implements DataFetcherExceptionResolver {
     }
 }
 ```
+</details>	
 
 ## Exception Testen 
 Prüfen Sie die Fehlerbehandlung, indem Sie über GraphQLiQL folgende Query eingeben.
@@ -182,7 +216,7 @@ spring:
 ```
 
 ## Security Configuration 
-Fügend Sie die folgende Spring Konfiguration hinzu. Diese Konfiguration ist nur notwendig, damit Sie weiterhin die URLs ``/ariline`` und ``/airline/graphiql`` aufrufen können, ohne einen Token angeben zu müssen. Denn den Token möchten wir ja erst über GraphQLiQL bei unseren Aufrufen definieren. 
+Fügend Sie die folgende Spring Konfiguration hinzu. Diese Konfiguration ist nur notwendig, damit Sie weiterhin die URLs ``/airline`` und ``/airline/graphiql`` aufrufen können, ohne einen Token angeben zu müssen. Denn den Token möchten wir ja erst über GraphQLiQL bei unseren Aufrufen definieren. 
 
 ```
 @Configuration
