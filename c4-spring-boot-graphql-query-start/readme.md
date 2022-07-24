@@ -160,7 +160,7 @@ query routes {
 ```
 
 <details>
-	<summary>Full snippet</summary>.
+	<summary>Complete snippet</summary>.
 	
 ```
 query routes {
