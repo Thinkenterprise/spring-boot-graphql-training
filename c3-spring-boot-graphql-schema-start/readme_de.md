@@ -1,10 +1,11 @@
-# Exercise Chapter 3 GraphQL Schema Language 
+# Übungsaufgabe Kapitel 3 GraphQL Schema Language 
 
-# Create Domain Model 
+# Domain-Modell erstellen 
 
-Task 1: Create the GraphQL schema for the domain model, consisting of Route and Flight. See Figure 1
+Aufgabe 1: Erstellen sie das GraphQL Schema für das Domain-Modell, bestehend aus Route und 
+Flight siehe Abbildung 1
 
-## Create a Route object 
+## Route Objekt erstellen 
  
 ```
 type Route {
@@ -26,7 +27,7 @@ type Route {
 ```
 </details>
 
-## Create a Flight object 
+## Flight Objekt erstellen 
 
 ```
 scalar Date
@@ -48,8 +49,8 @@ type Flight {
 ```
 </details>
 
-## Create Root Operations  
-Task 2: Create the root operations for querying all routes and creating exactly one route. 
+## Root Operations erstellen  
+Aufgabe 2: Erstellen sie die Root Operations, für die Abfrage aller Route und der Erzeugung genau einer Route. 
 
 ```
 schema {
@@ -86,7 +87,7 @@ type Query {
 ```
 </details>
 
-Define root operation for writing 
+Root Operation für das Schreiben definieren 
 
 ```
 type Mutation {
@@ -104,8 +105,10 @@ type Mutation {
 ```
 </details>
 
-## Pass arguments 
-Task 3: Pass the flightNumber as an argument when creating a route. 
+## Argumente übergeben 
+Aufgabe 3: Bei der Erstellung einer Route soll als Argument die flightNumber übergeben 
+werden
+
 ```
 type Mutation {
 	//TODO
@@ -122,8 +125,8 @@ type Mutation {
 ```
 </details>
 
-## Use directive 
-Task 4: Mark the field departure via a directive as deprecated
+## Directive verwenden 
+Aufgabe 4: Markieren Sie das Feld departure über eine Directive als deprecated
 
 ```
 type Route {

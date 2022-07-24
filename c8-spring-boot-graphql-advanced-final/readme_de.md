@@ -1,18 +1,19 @@
-# Metrics
+# Metriken 
 
-## Add Actuator 
+## Actuator hinzufügen 
 
-Add the **Spring Boot Actuator** dependency. 
+Fügen Sie die **Spring Boot Actuator** Dependency hinzu. 
 
 ```
 <dependency>
 	<groupId>org.springframework.boot</groupId>
-	<artifactId>spring-boot-starter-actuator</artifactId>.
+	<artifactId>spring-boot-starter-actuator</artifactId>
 </dependency>
 
 ```
 
-## Share metric endpoint 
+
+## Metric Endpoint freigeben 
 
 ```
 management:
@@ -25,7 +26,7 @@ management:
         - metrics
 ```
 
-## Define GraphQL Metric Properties
+## GraphQL Metric Properties definieren
 
  ```
 management:
@@ -35,52 +36,20 @@ management:
         enabled: true
 ```
 
-## Retrieve metrics 
+## Metriken abrufen 
 
  ```
-http://localhost:8080/actuator/metrics/graphql
+http://localhost:8080/actuator/metrics/graphql.datafetch.count
 ```
 
-Attention, before you see a metric, you must have performed at least one GraphQL operation, e.g., a ``query``. 
+# Performance 
 
 
-# Performance
+## Fast Controler implementieren 
 
-## Implement Fast Controller 
-
-Implement a performant FlightController with the name ``FastFlightController``. 
+Implementieren Sie einen performanten FlightController mit dem Namen ``FastFlightController``. 
 
  ```
-@Controller
-@Profile("batch")
-public class FastFlightController { 
-    @Autowired 
-    private EmployeeRepository employeeRepository;    
-    @Autowired
-    private DiscountService discountService;
-    
-    public FastFlightController(BatchLoaderRegistry batchLoaderRegistry) {
-	//TODO               
-    }
-    
-    @SchemaMapping
-    public List<Employee> employees(Flight flight) {
-    	return employeeRepository.findByFlight(flight);
-    }  
-    
-    @SchemaMapping
-    public CompletableFuture<Float> discount(Flight flight, DataLoader<Long, Float> discountBatchLoader) {
-    	return discountBatchLoader.load(flight.getId());
-    }
-    
-}
-
-```
-
-<details>
-	<summary>Complete snippet</summary>.
-	
-```
 @Controller
 @Profile("batch")
 public class FastFlightController { 
@@ -101,26 +70,25 @@ public class FastFlightController {
     }  
     
     @SchemaMapping
-    public CompletableFuture<Float> discount(Flight flight, DataLoader<Long, Float> discountBatchLoader) {
+    public CompletableFuture<Float>  discount(Flight flight, DataLoader<Long, Float> discountBatchLoader) {
     	return discountBatchLoader.load(flight.getId());
     }
     
 }
-```
-</details>
 
-## Set Fast Profile 
+```
+## Fast Profile setzen 
 
 ```
  spring:
    profiles:
      active:
      - noSecurity
-     - almost
+     - fast
 ```
 
-## Testing 
-Run the following query once with the ``fast`` profile and once without the ``fast`` profile.
+## Testen 
+Führen Sie die folgende Query einmal mit dem ``fast`` Profile und einmal ohne das ``fast`` Profile durch.
 
 ```
 query routes {
@@ -136,12 +104,13 @@ query routes {
 }
 ```
 
-Use the ``graphql.request`` metric to measure the improvement over time.  
+und Messen Sie über die Metrik ``graphql.request`` die zeitliche Verbesserung.  
 
 
-# Instrumentation
+# Instrumentation 
 
-## Implement Instrumentation 
+
+## Instrumentation implementieren 
 
 ```
 @Component
@@ -153,17 +122,19 @@ public class DataFetcherAccessConterInstrumentation extends SimpleInstrumentatio
 
     @Override
     public InstrumentationContext<ExecutionResult> beginField(InstrumentationFieldParameters parameters) {
-        //TODO
+        DataFetcherAccessConterInstrumentationState state = parameters.getInstrumentationState();
+        return SimpleInstrumentationContext.whenCompleted((data, exception) -> state.setCount(state.getCount()+1));
     }
 
     @Override
     public InstrumentationContext<ExecutionResult> beginExecuteOperation(InstrumentationExecuteOperationParameters parameters) {
-        //TODO
+        DataFetcherAccessConterInstrumentationState state = parameters.getInstrumentationState();
+        return SimpleInstrumentationContext.whenCompleted((data, exception) -> System.out.println("Filed Count: " + state.getCount()));
     }
 
     public static class DataFetcherAccessConterInstrumentationState implements InstrumentationState {
 
-        Integer-Number;
+        Integer count;
 
         private DataFetcherAccessConterInstrumentationState(Integer count) {
             this.count=count;
@@ -182,3 +153,10 @@ public class DataFetcherAccessConterInstrumentation extends SimpleInstrumentatio
 }
 
 ```
+
+
+
+
+
+
+

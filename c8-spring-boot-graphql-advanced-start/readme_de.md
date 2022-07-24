@@ -1,21 +1,21 @@
-# Exercise Chapter 8 GraphQL Advanced   
+# Übungsaufgabe Kapitel 8 GraphQL Advanced   
 
-# Metrics 
-Task 1: Measure the time for a GraphQL request using the GraphQL metrics provided by the Spring Boot Actuator.
+# Metriken 
+Aufgabe 1: Die Zeit für einen GraphQL Request soll, über die von dem Spring Boot Actuator bereitgestellten GraphQL Metriken, gemessen werden
 
-## Add Actuator 
+## Actuator hinzufügen 
 
-Add the **Spring Boot Actuator** dependency. 
+Fügen Sie die **Spring Boot Actuator** Dependency hinzu. 
 
 ```
 <dependency>
 	<groupId>org.springframework.boot</groupId>
-	<artifactId>spring-boot-starter-actuator</artifactId>.
+	<artifactId>spring-boot-starter-actuator</artifactId>
 </dependency>
 
 ```
 
-## Share metric endpoint 
+## Metric Endpoint freigeben 
 
 ```
 management:
@@ -28,7 +28,7 @@ management:
         - metrics
 ```
 
-## Define GraphQL Metric Properties
+## GraphQL Metric Properties definieren
 
  ```
 management:
@@ -38,21 +38,21 @@ management:
         enabled: true
 ```
 
-## Retrieve metrics 
+## Metriken abrufen 
 
  ```
 http://localhost:8080/actuator/metrics/graphql
 ```
 
-Attention, before you see a metric, you must have performed at least one GraphQL operation, e.g., a ``query``. 
+Achtung, bevor Sie eine Metrik sehen, müssen sie mindestens einen GraphQL Operation z.B. einer ``query`` durchgeführt haben. 
 
 
 # Performance 
-Task 2: The price discount of a flight Flight is determined via the DiscountService by performing a REST API request on a third-party system for each discount to be determined. This leads to many REST API requests, resulting in a long execution time overall. For this reason, the many REST API requests should be replaced with a batch call. Optimize the determination of the discount by a batch call. After optimization, check if the time for a GraphQL request has been reduced.   
+Aufgabe 2: Der Preis Discount eines Flugs Flight wird über den DiscountService bestimmt, indem dieser für jeden zu bestimmenden Discount ein REST-API-Request auf einem Fremdsystem durchführt. Das führt zu sehr vielen REST-API-Requests, die insgesamt zu einer sehr langen Ausführungszeit führen. Aus diesem Grund sollen die vielen REST-API-Requests durch einen Batchaufruf ersetzt werden. Optimieren Sie die Ermittlung des Discounts durch einen Batchaufruf. Prüfen Sie nach der Optimierung, ob sich die Zeit für einen GraphQL-Request reduziert hat.   
 
-## Implement Fast Controller 
+## Fast Controler implementieren 
 
-Implement a performant FlightController with the name ``FastFlightController``. 
+Implementieren Sie einen performanten FlightController mit dem Namen ``FastFlightController``. 
 
  ```
 @Controller
@@ -73,7 +73,7 @@ public class FastFlightController {
     }  
     
     @SchemaMapping
-    public CompletableFuture<Float> discount(Flight flight, DataLoader<Long, Float> discountBatchLoader) {
+    public CompletableFuture<Float>  discount(Flight flight, DataLoader<Long, Float> discountBatchLoader) {
     	return discountBatchLoader.load(flight.getId());
     }
     
@@ -82,7 +82,7 @@ public class FastFlightController {
 ```
 
 <details>
-	<summary>Complete snippet</summary>.
+	<summary>Vollständiges Snippet</summary>
 	
 ```
 @Controller
@@ -105,7 +105,7 @@ public class FastFlightController {
     }  
     
     @SchemaMapping
-    public CompletableFuture<Float> discount(Flight flight, DataLoader<Long, Float> discountBatchLoader) {
+    public CompletableFuture<Float>  discount(Flight flight, DataLoader<Long, Float> discountBatchLoader) {
     	return discountBatchLoader.load(flight.getId());
     }
     
@@ -113,18 +113,18 @@ public class FastFlightController {
 ```
 </details>
 
-## Set Fast Profile 
+## Fast Profile setzen 
 
 ```
  spring:
    profiles:
      active:
      - noSecurity
-     - almost
+     - fast
 ```
 
-## Testing 
-Run the following query once with the ``fast`` profile and once without the ``fast`` profile.
+## Testen 
+Führen Sie die folgende Query einmal mit dem ``fast`` Profile und einmal ohne das ``fast`` Profile durch.
 
 ```
 query routes {
@@ -140,13 +140,13 @@ query routes {
 }
 ```
 
-Use the ``graphql.request`` metric to measure the improvement over time.  
+und Messen Sie über die Metrik ``graphql.request`` die zeitliche Verbesserung.  
 
 
 # Instrumentation 
-Task 4: Use instrumentation to determine the number of all calls to the DataFetcher. Implement a custom instrumentation that outputs the number of calls by logging it to the console after each GraphQL request. 
+Aufgabe 4: Über eine Instrumentation soll die Anzahl aller Aufrufe auf DataFetcher bestimmt werden. Implementieren Sie eine eigene Instrumentation, die nach jedem GraphQL Request die Anzahl der Aufrufe über das Logging auf der Konsole ausgibt. 
 
-## Implement Instrumentation 
+## Instrumentation implementieren 
 
 ```
 @Component
@@ -189,10 +189,9 @@ public class DataFetcherAccessConterInstrumentation extends SimpleInstrumentatio
 ```
 
 <details>
-	<summary>Complete snippet</summary>.
+	<summary>Vollständiges Snippet</summary>
 	
 ```
-
 @Component
 public class DataFetcherAccessConterInstrumentation extends SimpleInstrumentation {
 
@@ -214,7 +213,7 @@ public class DataFetcherAccessConterInstrumentation extends SimpleInstrumentatio
 
     public static class DataFetcherAccessConterInstrumentationState implements InstrumentationState {
 
-        Integer-Zahl;
+        Integer-Number
 
         private DataFetcherAccessConterInstrumentationState(Integer count) {
             this.count=count;
@@ -233,3 +232,4 @@ public class DataFetcherAccessConterInstrumentation extends SimpleInstrumentatio
 }
 ```
 </details>
+

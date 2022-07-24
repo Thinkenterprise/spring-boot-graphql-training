@@ -1,23 +1,22 @@
-# Übungsaufgabe Kapitel 4 GraphQL Query Language 
+## Exercise Chapter 4 GraphQL Query Language 
 
-## Voraussetzung 
-**Achtung** kleine Korrektur zur Aufgabenbeschreibung aus dem Buch. Dort wird beschrieben, dass ein JAR-File gestartet werden soll, 
-dass in dem Start-Projekt liegt. Das ist allerdings nicht der Fall, sondern das JAR-File ist erst wie folgt beschrieben zu erstellen. 
-Damit die GraphQL Queries ausgeführt werden können, ist zuvor eine Anwendung zu starten, welche das GraphQL API bereitstellt. 
-Gehen Sie in das Projekt ``c6-spring-boot-graphql-api-final`` und bauen und starten Sie das Projekt wie folgt: 
+## Prerequisite 
+**Attention** A minor correction to the task description from the book. There it is described that a JAR file is to be started located in the start project. But this is not the case. The JAR file has to be created first, as described below. 
+To execute the GraphQL queries, an application is to be started before, which makes the GraphQL API available. 
+Go to the project ``c6-spring-boot-graphql-api-final`` and build and start the project as follows: 
 
 ```
 mvn clean package 
 mvn spring-boot:run
 ```
-Über folgende URL können Sie dann den GraphQL Query Editor starten, mit dem Sie die Queries ausführen und testen können. 
+You can then use the following URL to start the GraphQL query editor, which you can use to run and test the queries. 
 
 ```
 localhost:8080/airline/graphiql 
 ```
 
-## Abfrage aller Routen 
-Aufgabe 1: Fragen Sie alle Routen ab.
+## Query all routes 
+Task 1: Query all routes.
 
 ```
 query routes {
@@ -26,7 +25,7 @@ query routes {
 ```
 
 <details>
-	<summary>Vollständiges Snippet</summary>
+	<summary>Complete snippet</summary>.
 	
 ```
 query routes {
@@ -37,12 +36,12 @@ query routes {
 ```
 </details>
 
-## Variablen  
-Aufgabe 2: Erstellen Sie zwei Variablen für das Pagination und verwenden Sie diese. 
+## Variables  
+Task 2: Create two variables for pagination and use them. 
 
-**Achtung** kleine Korrektur. 
+**Caution** minor correction. 
 
-Aufgabe 2: Es soll über eine ``flightNumber`` Variable eine konkrete Route abgefragt werden. 
+Task 2: A concrete route is to be queried using a ``flightNumber`` variable. 
 
 ```
 query route {
@@ -54,7 +53,7 @@ query route {
 ```
 
 <details>
-	<summary>Vollständiges Snippet</summary>
+	<summary>Complete Snippet</summary>
 	
 ```
 query route {
@@ -66,8 +65,8 @@ query route {
 ```
 </details>
 
-## Verschiedene Queries  
-Aufgabe 3: Fragen Sie alle Routen mit drei verschiedenen Queries ab, die unterschiedliche Felder anzeigen.
+## Different queries  
+Task 3: Query all routes with three different queries that display different fields.
 
 
 ```
@@ -106,8 +105,8 @@ query routes {
 
 ```
 
-## Fragmente  
-Aufgabe 4: Erstellen Sie ein Fragment, über das Sie immer wiederkehrende Felder zusammenfassen. 
+## Fragments  
+Task 4: Create a fragment to summarize recurring fields. 
 
 ```
 fragment routeDetails on Route {
@@ -123,10 +122,10 @@ query queryWithFragment{
 ```
 
 <details>
-	<summary>Vollständiges Snippet</summary>
+	<summary> Complete snippet</summary>.
 	
 ```
-fragment routeDetails on Route {
+fragment routeDetails on route {
   id
   flightNumber
 }
@@ -141,7 +140,7 @@ query queryWithFragment{
 </details>
 
 ## Inline Fragment 
-Aufgabe 5: Fragen Sie über ein Inline Fragment alle unterschiedlichen Employee aller Flüge ab.
+Task 5: Query all employees of all flights via an inline fragment.
 
 ```
 query routes {
@@ -161,7 +160,7 @@ query routes {
 ```
 
 <details>
-	<summary>Vollständiges Snippet</summary>
+	<summary>Full snippet</summary>.
 	
 ```
 query routes {

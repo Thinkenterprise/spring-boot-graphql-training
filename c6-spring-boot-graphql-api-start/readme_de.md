@@ -1,11 +1,11 @@
-## Exercise Chapter 6 GraphQL Web API 
+# Übungsaufgabe Kapitel 6 GraphQL Web-API 
 
-## Reading via GraphQL Controller   
+## Lesen über den GraphQL Controller   
 
-Task 1: Create a GraphQL controller through which all available Route objects can be read. It should be possible to read the entire graph, from Route to Flight to Employee. Verify your implementation with GraphiQL.
+Aufgabe 1: Erstellen Sie einen GraphQL Controller, über den alle verfügbaren Route Objekte gelesen werden können. Es soll der gesamte Graph, von Route über Flight bis Employee, ausgelesen werden können. Überprüfen Sie Ihre Implementierung mit GraphiQL.
 
-For testing the controller via GraphiQL you can use the queries in ``queries.graphql``. 
-For this test use the query ``routes``. 
+Für das Testen des Controllers über GraphiQL können Sie die Queries unter ``queries.graphql`` verwenden. 
+Für diesen Test ist die Query ``routes`` zu verwenden. 
 
 
 ```
@@ -39,7 +39,7 @@ public class RouteController {
 ```
 
 <details>
-	<summary>Complete snippet</summary>.
+	<summary>Vollständiges Snippet</summary>
 	
 ```
 @Controller
@@ -72,14 +72,14 @@ public class RouteController {
 ```
 </details>
 
-## Writing via the GraphQL Controller   
+## Schreiben über den GraphQL Controller   
 
-Task 2: Extend the GraphQL controller with a mutation so that a new route can be created through it. Verify your implementation with GraphiQL.
+Aufgabe 2: Erweitern Sie den GraphQL Controller um eine Mutation so, dass über diese eine neue Route erstellt werden kann. Überprüfen Sie Ihre Implementierung mit GraphiQL.
 
-Add the following mutation to the GraphQL controller for writing. 
+Fügen Sie dem GraphQL Controller folgende Mutation für das Schreiben hinzu. 
 
-For testing the controller via GraphiQL, you can use the queries in ``queries.graphql``. 
-For this test, use the query ``createRoute``.
+Für das Testen des Controllers über GraphiQL können Sie die Queries unter ``queries.graphql`` verwenden. 
+Für diesen Test ist die Query ``createRoute`` zu verwenden.
 
 ```
 @Controller
@@ -94,7 +94,7 @@ public class RouteController {
 ```
 
 <details>
-	<summary>Complete snippet</summary>.
+	<summary>Vollständiges Snippet</summary>
 	
 ```
 @Controller
@@ -111,14 +111,14 @@ public class RouteController {
 ```
 </details>
 
-## Register using the GraphQL Controller   
+## Registrieren über den GraphQL Controller   
 
-Task 3: Extend the GraphQL Controller to include a subscription in a way that allows registration on the event "A new route has been created". Send a route event to the client when a new route is created. Verify your implementation with GraphiQL.
+Aufgabe 3: Erweitern Sie den GraphQL Controller um eine Subscription so, dass eine Registrierung auf das Event “Es wurde eine neue Route erstellt” möglich ist. Senden Sie ein Route Event an den Client, sobald eine neue Route erstellt wurde. Überprüfen Sie Ihre Implementierung mit GraphiQL.
 
-Add the following subscription to the GraphQL controller. 
+Fügen Sie dem GraphQL Controller folgende Subscription hinzu. 
 
-For testing the controller using GraphiQL, you can use the queries in ``queries.graphql``. 
-For this test, use the query ``createRoute``.
+Für das Testen des Controllers über GraphiQL können Sie die Queries unter ``queries.graphql`` verwenden. 
+Für diesen Test ist die Query ``createRoute`` zu verwenden.
 
 
 ```
@@ -134,7 +134,7 @@ public class RouteController {
 ```
 
 <details>
-	<summary>Complete snippet</summary>.
+	<summary>Vollständiges Snippet</summary>
 	
 ```
 @Controller
@@ -151,9 +151,9 @@ public class RouteController {
 ```
 </details>
 
-## Send client message via GraphQL controller    
+## Client über GraphQL Controller Nachricht senden    
 
-The mutation is customized to send a message to the client when a route is created. 
+Die Mutation wird so angepasst, dass wenn eine Route erzeugt wurde, dem Client eine Nachricht gesendet wird. 
 
 ```
 @Controller
@@ -174,7 +174,7 @@ public class RouteController {
 ```
     
 <details>
-	<summary>Complete snippet</summary>.
+	<summary>Vollständiges Snippet</summary>
 	
 ```
 @Controller

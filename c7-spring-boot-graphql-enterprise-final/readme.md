@@ -1,8 +1,9 @@
-# Data 
+#Data
 
-## Repositories verwenden 
-Bisher wurden **Mocks** als Datenquelle in den GraphQL Controllern verwendet. Tauschen Sie diese gegen die Repositories aus. 
-Die folgende Abbildung zeigt die Verwendung des ``RouteRepositories`` für den ``RouteController`` und eine Methode ``routes``. 
+## Use repositories
+
+Previously, **Mocks** were used as the data source in the GraphQL Controllers. Replace them with repositories. 
+The following figure shows the use of the ``RouteRepositories`` for the ``RouteController`` and the ``routes`` method. 
 
 
 ```
@@ -21,25 +22,56 @@ public class RouteController {
 
 # Exceptions
 
-## Exception werfen 
-Implementieren Sie im ``RouteController`` das Werfen der Exception. Die folgende Abbildung zeigt, wie die Exception ``RouteException`` geworfen wird, sofern die ``Route`` über die ``Flugnummer`` nicht gefunden wird. 
+## Throw Exception 
+Implement the throwing of the exception in the ``RouteController``. The following figure shows how to throw the ``RouteException`` exception if the ``route`` is not found using the ``flight number``. 
 
 ```
 @QueryMapping
 public Route route(String flightNumber) {
 	Optional<Route> route = routeRepository.findByFlightNumber(flightNumber);	
    	if(route.isEmpty()) 
-    		throw new RouteException("Hello this is a Route Exception");
+    		//TODO
     	else 
     		return route.get();	
     }
 ```
 
-## Exception Resolver implementieren 
-Erstellen Sie einen eigenen ``DataFetcherExceptionResolver``, der die Exception ``RouteException`` abfängt und eine geeigneten GraphQL Error erzeugt. 
+<details>
+	<summary>Compelte snippet</summary>.
+	
+```
+@QueryMapping
+public Route route(String flightNumber) {
+	Optional<route> route = routeRepository.findByFlightNumber(flightNumber);	
+   	if(route.isEmpty()) 
+    		throw new RouteException("Hello this is a Route Exception");
+    	else 
+    		return route.get();	
+    }
+```
+</details>
 
+## Implement exception resolver 
+Create a custom ``DataFetcherExceptionResolver`` that catches the ``RouteException`` exception and generates an appropriate GraphQL Error. 
 
+```
+@Component
+public class RouteExceptionResolver implements DataFetcherExceptionResolver {
 
+    @Override
+    public Mono<List<GraphQLError>> resolveException(Throwable exception, DataFetchingEnvironment environment) {
+
+        if (exception instanceof RouteException) {
+		//TODO
+        }
+        return Mono.empty();
+    }
+}
+```
+	
+<details>
+	<summary>Complete snippet</summary>.
+	
 ```
 @Component
 public class RouteExceptionResolver implements DataFetcherExceptionResolver {
@@ -58,9 +90,10 @@ public class RouteExceptionResolver implements DataFetcherExceptionResolver {
     }
 }
 ```
+</details>	
 
-## Exception Testen 
-Prüfen Sie die Fehlerbehandlung, indem Sie über GraphQLiQL folgende Query eingeben. Das die Flugnummer nicht exisitert müsste eine Exception geworfen werden.
+## Exception testing 
+Test the error handling by entering the following query via GraphiQL.
 
 ```
 query routeException {
@@ -71,50 +104,52 @@ query routeException {
 }
 ```
 
+Since the flight number does not exist, an exception should be thrown.
+
+
 # Test
 
+## Add Spring Boot Test Dependency  
 
-## Spring Boot Test Dependency hinzufügen  
-
-Fügen Sie bitte den **Spring Boot Test Starter** hinzu. 
+Please add the **Spring Boot Test Starter**. 
 
 ```
 <dependency>
 	<groupId>org.springframework.boot</groupId>
-	<artifactId>spring-boot-starter-test</artifactId>
+	<artifactId>spring-boot-starter-test</artifactId>.
 	<scope>test</scope>
 </dependency>
 
 ```
+## Add Spring GraphQL Test Dependency.  
 
-## Spring GraphQL Test Dependency hinzufügen  
-
-Fügen Sie bitte den **Spring GraphQL Test**  hinzu. 
+Please add the **Spring GraphQL Test**. 
 
 ```
 <dependency>
 	<groupId>org.springframework.graphql</groupId>
-	<artifactId>spring-graphql-test</artifactId>
+	<artifactId>spring-graphql-test</artifactId>.
 	<scope>test</scope>
 </dependency>
 
 ```
 
-## Spring Webflux Starter  Dependency hinzufügen 
+## Add Spring Webflux Starter Dependency. 
 
-Fügen Sie bitte den **Spring Boot Weblux Starter**  hinzu. 
+Please add the **Spring Boot Weblux Starter**. 
 
 ```
 <dependency>
 	<groupId>springframework.boot</groupId>
-	<artifactId>spring-boot-starter-webflux</artifactId>
+	<artifactId>spring-boot-starter-webflux</artifactId>.
 	<scope>test</scope>
 </dependency>
 ```
 
-## Test implementieren 
 
-Implementieren Sie den Test wie folgt und führen Sie diesen aus. Die GraphQL Query Datei ``routes.graphql`` ist unter ``resources/graphQL`` abgelegt. 
+## Implement test 
+
+Implement and run the test as follows. The GraphQL query file ``routes.graphql`` is located at ``resources/graphql-test``. 
 
 ```
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
@@ -134,38 +169,36 @@ public class TestWebRouteQueries {
   }
 ```
 
-## Testen des Tests 
-Führen Sie den Test über die gewählte IDE oder über die Konsole aus. 
-
+## Testing the test 
+Run the test from the selected IDE or the console. 
 
 
 # Security OAuth2 
 
 ## Security Dependency 
-Fügen Sie die **Spring Boot Security Starter** Dependency hinzu.  
-
+Add the **Spring Boot Security Starter** dependency.  
 
 ```
 <dependency>
-	<groupId>org.springframework.boot</groupId>
-	<artifactId>spring-boot-starter-security</artifactId>
+	<groupId>org.springframework.boot</groupId>.
+	<artifactId>spring-boot-starter-security</artifactId>.
 </dependency>
 
 ```
 
-## OAuth2 Dependency hinzufügen 
+## Add OAuth2 Dependency. 
 
-Fügen Sie die **Spring Boot OAuth2 Starter** Dependency hinzu.  
+Add the **Spring Boot OAuth2 Starter** Dependency.  
 
 ```
 <dependency>
 	<groupId>org.springframework.boot</groupId>
-	<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+	<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>.
 </dependency>
 
 ```
-## OAuth2 Properties hinzufügen  
-Fügen Sie die folgenden Spring Properties in der Datei ``application.yml`` hinzu. Die Textdatei mit dem Public-Key befindet sich im Verzeichnis ``resource/MET-INF/resources``. Über die Prüfung der Signatur ist die Authentifizierung sichergestellt. 
+## Add OAuth2 Properties.  
+Add the following Spring properties to the ``application.yml`` file. The public key's text file is located in the ``resource/MET-INF/resources`` directory. Authentication is ensured via signature verification. 
 
 ```
 spring:
@@ -177,9 +210,8 @@ spring:
 
 ```
 
-
 ## Security Configuration 
-Fügend Sie die folgende Spring Konfiguration hinzu. Diese Konfiguration ist nur notwendig, damit Sie weiterhin die URLs ``/ariline`` und ``/airline/graphiql`` aufrufen können, ohne einen Token angeben zu müssen. Denn den Token möchten wir ja erst über GraphQLiQL bei unseren Aufrufen definieren. 
+Add the following spring configuration. This configuration is only necessary so that you can still call the URLs ``/airline`` and ``/airline/graphiql`` without specifying a token. This is because we want to define the token first via GraphQLiQL when we make calls. 
 
 ```
 @Configuration
@@ -201,21 +233,21 @@ public class GraphQLOAuth2SecurityConfiguration extends WebSecurityConfigurerAda
 }
 ```
 
-Die folgende Konfiguration ist wichtig, um Annotationen für die Autorisierung zu aktivieren. 
+The following configuration is essential to enable annotations for authorization. 
 
 ```
 @Configuration
 @Profile("basic | oauth2")
 @EnableGlobalMethodSecurity(prePostEnabled=true)
-public class GraphQLBasicMethodSecurityConfiguration extends GlobalMethodSecurityConfiguration  {
+public class GraphQLBasicMethodSecurityConfiguration extends GlobalMethodSecurityConfiguration {
          
 }
 ```
 
-Setzen Sie in der Spring Boot Property Datei ``application.yml`` nocht das **Profile** ``oAuth2`` damit die Security Konfiguration aktiv wird. 
+In the Spring Boot property file ``application.yml`` set the **Profile** ``oAuth2`` to enable the security configuration. 
 
 
-## Methode autorsieren  
+## Authorize method  
 
 ```
 @QueryMapping
@@ -227,15 +259,15 @@ public List<Route> routes() {
 
 ## Security Test 
 
-Rufen sie GraphiQL auf, geben Sie unter **Request Herader** den Token ein 
+Call GraphiQL, enter the token under **Request Header**, 
 
 ```
 {
-  "Authorization":"Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJyZWFkIl0sImV4cCI6MjE0NDA4NjQ0MCwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJfbmFtZSI6InRvbSIsImp0aSI6ImM4N2Q5NTNjLTZlZDAtNGRlMy1hZTJlLTMwZTcwOTYyNjExNyIsImNsaWVudF9pZCI6ImZvbyJ9.vOx3WIajVeaPelFuYttvSjvOSXw5POwzQiZPxQmH6eSQTVR_YCHHzd0vh2a00g3spZ0-S7fZfkiFuNF-QJogGS-GER-B8p4c6mMrazN0x-wytMVM6xZrQbner0Uqu_uuK1vQs-gm2-2BFpydQtq-ZYicss21RSJTLK7fuH5DzHQ"
+  "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9. eyJzY29wZSI6WyJyZWFkIl0sImV4cCI6MjE0NDA4NjQ0MCwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJfbmFtZSI6InRvbSIsImp0aSI6ImM4N2Q5NTNjLTZlZDAtNGRlMy1hZTJlLTMwZTcwOTYyNjExNyIsImNsaWVudF9pZCI6ImZvbyJ9. vOx3WIajVeaPelFuYttvSjvOSXw5POwzQiZPxQmH6eSQTVR_YCHHzd0vh2a00g3spZ0-S7fZfkiFuNF-QJogGS-GER-B8p4c6mMrazN0x-wytMVM6xZrQbner0Uqu_uuK1vQs-gm2-2BFpydQtq-ZYicss21RSJTLK7fuH5DzHQ"
 }
 ```
 
-und führen Sie die Query 
+and execute the query.
 
 ```
 query routes {
@@ -245,6 +277,3 @@ query routes {
   }
 }
 ```
-
-aus. 
-

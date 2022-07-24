@@ -1,8 +1,8 @@
-# Übungsaufgabe Kapitel 5 GraphQL Web-API Anwendung  
+## Exercise Chapter 5 GraphQL Web API Application  
 
-## GraphQL Starter einbinden 
+## Include GraphQL starters 
 
-Aufgabe 1: Binden Sie über das pom.xml die richtigen Starter ein, sodass sie die GraphQL Web-API über einen synchronen HTTP-Zugriff für den GraphQL Client bereitstellen können.  
+Task 1: Include the correct starters via the pom.xml so that they can provide the GraphQL Web API to the GraphQL client via synchronous HTTP access.
 
 ```
 <dependencies>
@@ -16,7 +16,7 @@ Aufgabe 1: Binden Sie über das pom.xml die richtigen Starter ein, sodass sie di
 ```
 
 <details>
-	<summary>Vollständiges Snippet</summary>
+	<summary>Complete snippet</summary>.
 	
 ```
 <dependencies>
@@ -32,8 +32,8 @@ Aufgabe 1: Binden Sie über das pom.xml die richtigen Starter ein, sodass sie di
 ```
 </details>
 
-## GraphQL Endpoint konfigurieren  
-Aufgabe 2: Konfigurieren Sie die GraphQL Web-API-Anwendung über Spring-Properties so, dass die GraphQL Web-API über die URL localhost:8080/airline angesprochen werden kann. 
+## Configure GraphQL Endpoint  
+Task 2: Configure the GraphQL Web API application via Spring properties so that the GraphQL Web API can be accessed via the URL localhost:8080/airline. 
 
 ```
 spring:
@@ -45,7 +45,7 @@ spring:
 ```
 
 <details>
-	<summary>Vollständiges Snippet</summary>
+	<summary> Complete snippet</summary>.
 	
 ```
 spring:
@@ -57,8 +57,8 @@ spring:
 ```
 </details>
 
-## GraphQL Schema Location konfigurieren  
-Aufgabe 3: Konfigurieren die GraphQL API-Anwendung über Spring-Properties so, dass die Schema-Datei airline.graphqls unter resource/graphql  verwendet wird. 
+## Configure GraphQL schema location  
+Task 3: Configure the GraphQL API application via Spring properties to use the schema file airline.graphqls under resource/graphql. 
 
 ```
 spring:
@@ -70,7 +70,7 @@ spring:
 ```
 
 <details>
-	<summary>Vollständiges Snippet</summary>
+	<summary> Complete snippet</summary>.
 	
 ```
 spring:
@@ -82,19 +82,19 @@ spring:
 ```
 </details>
 
-## GraphiQL Starten 
-Aufgabe 4: Starten Sie die GraphQL Web-API-Anwendung und rufen Sie GraphiQL über die URL localhost:8080/airline/graphiql im Browser auf.
+## Start GraphiQL 
+Task 4: Start the GraphQL Web API application and call GraphiQL from the URL localhost:8080/airline/graphiql in the browser.
 
 ```
 localhost:8080/airline/graphiql 
 ```
 
-## GraphQL API-Anwendung testen 
+## Test GraphQL API application 
 
-**Achtung kleine Korrektur**. Im Buch wird eine Query verwendet, die nicht funktioniert. Die hier angegebene Query funktioniert. 
+**Attention minor correction**. The book uses a query that does not work. The query given here works. 
 
 
-Aufgabe 5: Setzen Sie die folgende GraphQL Query ab. 
+Task 5: Submit the following GraphQL query. 
 
 ```
 query helloWorld {

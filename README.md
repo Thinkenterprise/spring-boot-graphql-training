@@ -1,18 +1,14 @@
+The project **Spring Boot GraphQL Training** contains the source code of the exercise tasks from the book [Spring for GraphQL in Practice: Implementation of modern web APIs] (https://www.amazon.com/-/de/dp/B0B6XMW5KB/ref=sr_1_3?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=S8MA8UB1H71E&keywords=Spring+for+GraphQL&qid=1658485251&sprefix=spring+for+graphql%2Caps%2C149&sr=8-3).
 
-Das Projekt **Spring Boot GraphQL Training** beinhaltet den Source Code der Übungsaufgaben aus dem Buch [Spring for GraphQL - Moderne Web-APIs implementieren](https://www.amazon.de/Spring-GraphQL-Moderne-Web-APIs-implementieren-ebook/dp/B0B299JGHX/ref=sr_1_3?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=33Z324QF3O0BO&keywords=Spring+for+GraphQL&qid=1653688340&sprefix=spring+for+graphql%2Caps%2C81&sr=8-3)
-
-**Für die Durchführung der Übungsaufgaben wird  Java 17 benötigt**. Spring Boot 2.7 verwendet erstmals Java 17. Spring Boot 2.7 ist Voraussetzung für die Verwendung von Spring for GraphQL.
-
+**Java 17 is required to complete the exercise tasks**. Since Spring Boot 2.7, Java 17 has been used. Therefore Spring Boot 2.7 is a prerequisite for using Spring for GraphQL.
 
 
-Die Kapitel 3-8 werden mit Übungsaufgaben abgeschlossen. Das Github Projekt ist in Maven-Projekte, mit folgenden Namenskonventionen aufgeteilt.
+
+Chapters 3-8 are concluded with exercise tasks. The Github project is split into Maven projects with the following naming conventions.
 
 ```
-c<Kapitelnummer>.spring-boot-graphql-<Kapitelname>.<start|final> 
+c<chapter-number>.spring-boot-graphql-<chapter-name>.<start|final> 
 ```
  
 
-Die ``<start>-Projekte`` können als Ausgangspunkt für die Übungsaufgabe verwendet werden. In jedem Startprojekt liegt eine ``readme.md`` Datei in der die Lösungsschritte beschrieben sind. Die ``<final>-Projekte`` beinhalten die finale Musterimplementierung. Fehler oder Erweiterungen können gerne über Github issues und pull requests eingestellt werden.
-
-
-
+The ``<start> projects`` can be used as a starting point for the exercise task. Each start project has a ``readme.md`` file in which the solution steps are described. The ``<final>-projects`` contain the sample solution. Bugs or enhancements are welcome via Github issues and pull requests.
