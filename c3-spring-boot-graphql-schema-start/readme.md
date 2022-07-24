@@ -12,7 +12,7 @@ type Route {
 }
 ```
 <details>
-	<summary>Vollständiges Snippet</summary>
+	<summary>Complete Snippet</summary>
 	
 ```
 type Route {
@@ -36,7 +36,7 @@ type Flight {
 }
 ```
 <details>
-	<summary>Vollständiges Snippet</summary>
+	<summary>Complete Snippet</summary>
 	
 ```
 type Flight {
@@ -58,7 +58,7 @@ schema {
 ```
 
 <details>
-	<summary>Vollständiges Snippet</summary>
+	<summary>Complete Snippet</summary>
 	
 ```
 schema {
@@ -77,7 +77,7 @@ type Query {
 ```
 
 <details>
-	<summary>Vollständiges Snippet</summary>
+	<summary>Complete Snippet</summary>
 	
 ```
 type Query { 
@@ -95,7 +95,7 @@ type Mutation {
 ```
 
 <details>
-	<summary>Vollständiges Snippet</summary>
+	<summary>Complete Snippet</summary>
 	
 ```
 type Mutation {
@@ -113,7 +113,7 @@ type Mutation {
 ```
 
 <details>
-	<summary>Vollständiges Snippet</summary>
+	<summary>Complete Snippet</summary>
 	
 ```
 type Mutation {
@@ -132,7 +132,7 @@ type Route {
 ```
 
 <details>
-	<summary>Vollständiges Snippet</summary>
+	<summary>Complete Snippet</summary>
 	
 ```
 type Route {
