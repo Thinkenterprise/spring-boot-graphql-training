@@ -95,7 +95,7 @@ public class RouteExceptionResolver implements DataFetcherExceptionResolver {
 </details>	
 
 ## Exception Testen 
-Prüfen Sie die Fehlerbehandlung, indem Sie über GraphQLiQL folgende Query eingeben.
+Prüfen Sie die Fehlerbehandlung, indem Sie über GraphiQL folgende Query eingeben.
 
 ```
 query routeException {
